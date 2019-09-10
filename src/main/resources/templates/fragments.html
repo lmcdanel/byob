@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">BYOB</title>
+
+    <link rel="stylesheet" href="static/css/bootstrap.css" />
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+
+</head>
+<body>
+
+<nav th:fragment="navigation">
+    <a href="/byob/suggest">Suggest</a> |
+    <a href="/byob/random">Random</a> |
+    <a href="/user/add">Sign Up</a>
+
+</nav>
+
+</body>
+</html>
