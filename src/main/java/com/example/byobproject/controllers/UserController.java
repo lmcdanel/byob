@@ -23,9 +23,8 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
-    @RequestMapping("/")
+    @RequestMapping("")
     public String displayUserHome(Model model, @ModelAttribute User user) {
-        model.addAttribute("title", "BYOB");
         model.addAttribute("beers", beerDao.findAll());
         model.addAttribute("user", user);
         model.addAttribute("username", user.getUsername());
@@ -35,7 +34,6 @@ public class UserController {
     }
     @RequestMapping("add")
     public String displayAddForm(Model model) {
-        model.addAttribute("title","BYOB");
         model.addAttribute(new User());
         return "user/add";
     }
@@ -49,13 +47,11 @@ public class UserController {
         }
 
         if(newUser.getPassword().equals(verify)) {
-            model.addAttribute("title","BYOB");
             model.addAttribute("user", newUser);
             userDao.save(newUser);
             return "redirect:";
 
         }
-        model.addAttribute("title","BYOB");
         model.addAttribute("errormessage","Passwords do not match");
         return "user/add";
 

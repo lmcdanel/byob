@@ -5,3 +5,8 @@ body {
 nav {
     margin-bottom: 20px;
 }
+body {
+  background: transparent url(./images/bubbles.jpeg) top left;
+  background-size: cover;
+  background-attachment: fixed;
+  }

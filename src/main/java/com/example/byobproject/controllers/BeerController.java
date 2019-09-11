@@ -29,28 +29,23 @@ public class BeerController {
     public String index(Model model) {
 
         model.addAttribute("beers", beerDao.findAll());
-        model.addAttribute("title", "My Beers");
-        model.addAttribute("title", "BYOB");
         return "beer/index";
     }
 
     @RequestMapping(value = "suggest", method = RequestMethod.GET)
     public String suggest(Model model) {
 
-        model.addAttribute("title", "BYOB");
         return "beer/suggest";
     }
 
     @RequestMapping(value = "random", method = RequestMethod.GET)
     public String random(Model model) {
 
-        model.addAttribute("title", "BYOB");
         return "beer/random";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddBeerForm(Model model) {
-        model.addAttribute("title", "Add Beer");
         model.addAttribute(new Beer());
         return "beer/add";
     }
@@ -60,9 +55,10 @@ public class BeerController {
                                        Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Beer");
+          return "beer/add";
         }
-        return "beer/add";
+        beerDao.save(newBeer);
+        return "user/index";
     }
 
 
@@ -70,7 +66,6 @@ public class BeerController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveBeerForm(Model model) {
         model.addAttribute("beers", beerDao.findAll());
-        model.addAttribute("title", "Remove Beer");
         return "beer/remove";
     }
 
