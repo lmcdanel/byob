@@ -8,26 +8,13 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Your Beers</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Category</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="table-active" th:each="beer : ${beers}">
-        <td th:text="${beer.name}"></td>
-        <td th:text="${beer.description}"></td>
-    </tr>
-    </tbody>
-</table>
-<p class="lead" th:unless="${beers} and ${beers.size()}">no beers yet :(</p>
+<h2>All Users</h2>
 
-<button type="button" class="btn btn-primary"><a href="/byob/add">Add</a></button>
-<button type="button" class="btn btn-primary"><a href="/byob/remove">Remove</a></button>
+<ul>
+    <li th:each="user : ${users}">
+        <a th:href="'/user/view/' + ${user.id}" th:text="${user.username}"></a>
+    </li>
+</ul>
 
 
 </body>

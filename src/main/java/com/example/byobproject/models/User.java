@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 public class User {
 
+
+
     @Id
     @GeneratedValue
     private int id;
@@ -25,9 +27,12 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Beer> beers = new ArrayList<>();
+    @ManyToMany
+    private List<Beer> beers;
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
@@ -55,5 +60,9 @@ public class User {
 
     public List<Beer> getBeers() {
         return beers;
+    }
+
+    public void addItem(Beer item) {
+        beers.add(item);
     }
 }

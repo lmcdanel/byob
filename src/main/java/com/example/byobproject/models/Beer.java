@@ -4,12 +4,10 @@ package com.example.byobproject.models;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -20,6 +18,10 @@ public class Beer {
     private int id;
 
     @NotNull
+    @Size(min=1)
+    private String brewery;
+
+    @NotNull
     @Size(min=3, max=15)
     private String name;
 
@@ -27,13 +29,15 @@ public class Beer {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-//    @ManyToMany(mappedBy = "beers", cascade = CascadeType.ALL)
-//    private List<RatedBeers> ratedBeersList;
+    @ManyToMany(mappedBy = "beers", cascade = CascadeType.ALL)
+    private List<User> users;
 
     @ManyToOne
-    private User user;
+    private Category category;
 
-    public Beer(String name, String description) {
+
+    public Beer(String brewery, String name, String description) {
+        this.brewery = brewery;
         this.name = name;
         this.description = description;
     }
@@ -60,13 +64,21 @@ public class Beer {
         this.description = description;
     }
 
- //   public Category getCategory() {
-//        return category;
-//    }
 
- //   public void setCategory(Category category) {
- //       this.category = category;
- //   }
+    public String getBrewery() {
+        return brewery;
+    }
+
+    public void setBrewery(String brewery) {
+        this.brewery = brewery;
+    }
+   public Category getCategory() {
+        return category;
+        }
+
+    public void setCategory(Category category) {
+        this.category = category;
+   }
 
 
 }

@@ -4,11 +4,16 @@
 
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h2>Beer of the Day!</h2>
+<h2>All Beers</h2>
+
+<ul>
+    <li th:each="beer : ${beers}">
+        <a th:text="${beer.name}"></a>
+    </li>
+</ul>
 
 </body>
 </html>

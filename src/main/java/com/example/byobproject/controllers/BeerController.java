@@ -2,6 +2,7 @@ package com.example.byobproject.controllers;
 
 
 import com.example.byobproject.models.Beer;
+import com.example.byobproject.models.User;
 import com.example.byobproject.models.data.BeerDao;
 import com.example.byobproject.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class BeerController {
         return "beer/index";
     }
 
+    @RequestMapping(value = "home")
+    public String beerofTheDay(Model model) {
+
+        return "beer/home";
+    }
     @RequestMapping(value = "suggest", method = RequestMethod.GET)
     public String suggest(Model model) {
 
@@ -51,14 +57,15 @@ public class BeerController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddBeerForm(@ModelAttribute @Valid Beer newBeer,
+    public String processAddBeerForm(@ModelAttribute @Valid Beer newBeer, User user,
                                        Errors errors, Model model) {
 
         if (errors.hasErrors()) {
           return "beer/add";
         }
+
         beerDao.save(newBeer);
-        return "user/index";
+        return "beer/index";
     }
 
 
